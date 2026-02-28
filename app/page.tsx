@@ -253,7 +253,7 @@ function SkillPage({ skill, lang }: { skill: Skill; lang: Lang }) {
         <h3 className="text-xs font-bold text-amber-900 uppercase tracking-widest mb-3">
           {t.metricsTitle}
         </h3>
-        <div className="grid grid-cols-3 gap-3">
+        <div className={`grid gap-3 ${(skill.usageCount ?? 0) > 0 ? "grid-cols-4" : "grid-cols-3"}`}>
           <div className="bg-amber-50 border border-amber-200 rounded-lg p-3.5 text-center">
             <div className="text-xl font-bold text-amber-900" style={{ fontFamily: "var(--font-serif)" }}>{skill.processSteps}</div>
             <div className="text-xs font-semibold text-amber-700 mt-1">{t.processSteps}</div>
@@ -266,6 +266,12 @@ function SkillPage({ skill, lang }: { skill: Skill; lang: Lang }) {
             <div className="text-xl font-bold text-amber-900" style={{ fontFamily: "var(--font-serif)" }}>{skill.lineCount}</div>
             <div className="text-xs font-semibold text-amber-700 mt-1">{t.lines}</div>
           </div>
+          {(skill.usageCount ?? 0) > 0 && (
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3.5 text-center">
+              <div className="text-xl font-bold text-emerald-900" style={{ fontFamily: "var(--font-serif)" }}>{skill.usageCount}</div>
+              <div className="text-xs font-semibold text-emerald-700 mt-1">{t.used}</div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -292,11 +298,14 @@ function SkillPage({ skill, lang }: { skill: Skill; lang: Lang }) {
   );
 }
 
-function HeroSection({ lang, totalLines }: { lang: Lang; totalLines: number }) {
+function HeroSection({ lang, totalLines, totalUsed }: { lang: Lang; totalLines: number; totalUsed: number }) {
   const t = ui[lang];
 
   return (
-    <section className="forest-canopy min-h-screen flex flex-col items-center justify-center relative" style={{ padding: "clamp(1.5rem, 4vw, 3rem)" }}>
+    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden" style={{ padding: "clamp(1.5rem, 4vw, 3rem)" }}>
+      {/* Forest canopy gradient at top */}
+      <div className="forest-canopy" aria-hidden="true" />
+
       {/* Falling leaves */}
       <LeafParticles />
 
@@ -327,7 +336,7 @@ function HeroSection({ lang, totalLines }: { lang: Lang; totalLines: number }) {
           className="text-amber-200/50 mt-3 animate-fade-in-up text-sm tracking-wide"
           style={{ animationDelay: "0.7s" }}
         >
-          {skills.length} Skills · {categories.length} Categories · {totalLines.toLocaleString()} Lines of Knowledge
+          {skills.length} Skills · {categories.length} Categories · {totalLines.toLocaleString()} Lines{totalUsed > 0 ? ` · ${totalUsed.toLocaleString()} ${t.totalUsed}` : ""}
         </p>
       </div>
 
@@ -457,6 +466,7 @@ export default function Home() {
   const filteredSkills = activeCategory ? skills.filter((s) => s.category === activeCategory) : skills;
   const totalSteps = skills.reduce((sum, s) => sum + s.processSteps, 0);
   const totalLines = skills.reduce((sum, s) => sum + s.lineCount, 0);
+  const totalUsed = skills.reduce((sum, s) => sum + (s.usageCount ?? 0), 0);
 
   return (
     <>
@@ -466,7 +476,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <HeroSection lang={lang} totalLines={totalLines} />
+      <HeroSection lang={lang} totalLines={totalLines} totalUsed={totalUsed} />
 
       {/* Book Section */}
       <section id="skills">
@@ -554,7 +564,12 @@ export default function Home() {
                                   >
                                     {skill.name[lang]}
                                   </span>
-                                  <span className="text-xs font-medium text-gray-500 tabular-nums">{skill.lineCount}L</span>
+                                  <span className="flex items-center gap-1.5">
+                                    {(skill.usageCount ?? 0) > 0 && (
+                                      <span className="text-xs font-semibold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full tabular-nums">{skill.usageCount}</span>
+                                    )}
+                                    <span className="text-xs font-medium text-gray-500 tabular-nums">{skill.lineCount}L</span>
+                                  </span>
                                 </div>
                                 <p className="text-xs text-gray-600 mt-0.5 line-clamp-1">{skill.description[lang]}</p>
                               </button>

@@ -10,6 +10,7 @@ export interface Skill {
   processSteps: number;
   antiPatterns: { ko: string; en: string }[];
   lineCount: number;
+  usageCount: number;
   path: string;
 }
 
@@ -49,6 +50,8 @@ export const ui: Record<Lang, Record<string, string>> = {
     copied: "복사됨!",
     browseSkills: "스킬 둘러보기 ↓",
     howToUse: "사용 예시",
+    used: "사용",
+    totalUsed: "총 사용",
   },
   en: {
     title: "Skill Book",
@@ -78,6 +81,8 @@ export const ui: Record<Lang, Record<string, string>> = {
     copied: "Copied!",
     browseSkills: "Browse Skills ↓",
     howToUse: "Usage Example",
+    used: "Used",
+    totalUsed: "Total Used",
   },
 };
 
@@ -122,6 +127,7 @@ export const skills: Skill[] = [
       { ko: "고객 부재 분석: 데스크 리서치만으로 고객 니즈를 추정", en: "Customer-absent Analysis: Estimating customer needs from desk research alone" },
     ],
     lineCount: 166,
+    usageCount: 0,
     path: "business/market-research.md",
   },
   {
@@ -150,6 +156,7 @@ export const skills: Skill[] = [
       { ko: "대체재 무시: 비소프트웨어 대안을 간과", en: "Ignoring Substitutes: Overlooking non-software alternatives" },
     ],
     lineCount: 209,
+    usageCount: 0,
     path: "business/competitor-analysis.md",
   },
   {
@@ -178,6 +185,7 @@ export const skills: Skill[] = [
       { ko: "Vanity Metrics 집착: 허영 지표에 집중", en: "Vanity Metrics Obsession: Focusing on vanity metrics" },
     ],
     lineCount: 46,
+    usageCount: 0,
     path: "business/saas-strategy.md",
   },
   {
@@ -206,6 +214,7 @@ export const skills: Skill[] = [
       { ko: "API Key 클라이언트 노출: 보안 위험", en: "Client-side API Key Exposure: Security risk" },
     ],
     lineCount: 203,
+    usageCount: 0,
     path: "ai/llm-architecture.md",
   },
   {
@@ -234,6 +243,7 @@ export const skills: Skill[] = [
       { ko: "Human-in-the-Loop 미적용: 고위험 작업 무승인 실행", en: "No Human-in-the-Loop: Executing high-risk operations without approval" },
     ],
     lineCount: 47,
+    usageCount: 0,
     path: "ai/ai-agent.md",
   },
   {
@@ -262,6 +272,7 @@ export const skills: Skill[] = [
       { ko: "useEffect에서 데이터 페칭: RSC 활용 부족", en: "Data Fetching in useEffect: Underusing RSC" },
     ],
     lineCount: 47,
+    usageCount: 1,
     path: "dev/frontend.md",
   },
   {
@@ -290,6 +301,7 @@ export const skills: Skill[] = [
       { ko: "트랜잭션 무시: 데이터 불일치 발생", en: "Ignoring Transactions: Causes data inconsistency" },
     ],
     lineCount: 262,
+    usageCount: 0,
     path: "dev/database.md",
   },
   {
@@ -320,6 +332,7 @@ export const skills: Skill[] = [
       { ko: "대비 부족: 연한 텍스트 on 밝은 배경은 읽기 어려움", en: "Low Contrast: Light text on light backgrounds is unreadable" },
     ],
     lineCount: 146,
+    usageCount: 0,
     path: "dev/web-visual-design.md",
   },
   {
@@ -350,6 +363,7 @@ export const skills: Skill[] = [
       { ko: "reduced-motion 미대응: 전정 장애 사용자에게 어지러움 유발", en: "No reduced-motion: Can cause dizziness for users with vestibular disorders" },
     ],
     lineCount: 46,
+    usageCount: 0,
     path: "dev/css-animation.md",
   },
   {
@@ -381,6 +395,7 @@ export const skills: Skill[] = [
       { ko: "E2E에서 세부 로직 검증: E2E는 사용자 시나리오 단위로 작성", en: "Testing Details in E2E: E2E should be written at user scenario level" },
     ],
     lineCount: 50,
+    usageCount: 2,
     path: "dev/testing.md",
   },
   {
@@ -412,6 +427,7 @@ export const skills: Skill[] = [
       { ko: "환경별 분기 없는 설정: 모든 환경에 동일 설정 사용", en: "No Environment Separation: Using same config for all environments" },
     ],
     lineCount: 245,
+    usageCount: 0,
     path: "dev/devops-cicd.md",
   },
   {
@@ -444,6 +460,7 @@ export const skills: Skill[] = [
       { ko: "enum 대신 union 검토: enum은 런타임 코드를 생성하고 tree-shaking이 어려움", en: "Consider Union over Enum: Enums generate runtime code and hinder tree-shaking" },
     ],
     lineCount: 169,
+    usageCount: 0,
     path: "dev/typescript-patterns.md",
   },
   {
@@ -476,6 +493,7 @@ export const skills: Skill[] = [
       { ko: "보안 업데이트 미적용: npm audit를 정기적으로 실행하지 않음", en: "Skipping Security Updates: Not running npm audit regularly" },
     ],
     lineCount: 54,
+    usageCount: 0,
     path: "dev/security.md",
   },
   {
@@ -507,6 +525,7 @@ export const skills: Skill[] = [
       { ko: "키워드 검색 배제: 시맨틱 검색만으로는 정확한 용어 매칭이 어려움", en: "Excluding Keyword Search: Semantic search alone struggles with exact term matching" },
     ],
     lineCount: 196,
+    usageCount: 0,
     path: "ai/rag-system.md",
   },
   {
@@ -538,6 +557,7 @@ export const skills: Skill[] = [
       { ko: "Transport 의존적 코드: 서버 로직에 stdio/SSE 특정 코드를 혼합", en: "Transport-Dependent Code: Mixing stdio/SSE specific code in server logic" },
     ],
     lineCount: 178,
+    usageCount: 0,
     path: "ai/mcp-integration.md",
   },
   {
@@ -570,6 +590,7 @@ export const skills: Skill[] = [
       { ko: "과소 표본: 1-2명의 인터뷰로 전체 사용자를 대표하려는 것", en: "Insufficient Sample: Trying to represent all users with 1-2 interviews" },
     ],
     lineCount: 163,
+    usageCount: 0,
     path: "product/ux-research.md",
   },
   {
@@ -602,6 +623,7 @@ export const skills: Skill[] = [
       { ko: "상관과 인과 혼동: 상관관계를 인과관계로 해석", en: "Correlation-Causation Confusion: Interpreting correlation as causation" },
     ],
     lineCount: 180,
+    usageCount: 0,
     path: "product/product-analytics.md",
   },
   {
@@ -634,6 +656,7 @@ export const skills: Skill[] = [
       { ko: "**Ask 불명확**: 모호한 투자 요청. 구체적 금액, 사용처 비율, 달성 마일스톤을 반드시 명시할 것", en: "**Ask 불명확**: 모호한 투자 요청. 구체적 금액, 사용처 비율, 달성 마일스톤을 반드시 명시할 것" },
     ],
     lineCount: 143,
+    usageCount: 0,
     path: "business/pitch-deck.md",
   },
   {
@@ -666,6 +689,7 @@ export const skills: Skill[] = [
       { ko: "**엔지니어링 제약 무시**: 기술적 실현 가능성을 고려하지 않는 이상적 명세. 초안 단계에서 Technical Review를 반드시 포함할 것", en: "**엔지니어링 제약 무시**: 기술적 실현 가능성을 고려하지 않는 이상적 명세. 초안 단계에서 Technical Review를 반드시 포함할 것" },
     ],
     lineCount: 51,
+    usageCount: 0,
     path: "product/feature-spec.md",
   },
   {
@@ -698,6 +722,7 @@ export const skills: Skill[] = [
       { ko: "**Over-notification**: 과도한 알림으로 반감을 사는 것. Frequency Capping을 설정하고 가치 있는 콘텐츠만 발송할 것", en: "**Over-notification**: 과도한 알림으로 반감을 사는 것. Frequency Capping을 설정하고 가치 있는 콘텐츠만 발송할 것" },
     ],
     lineCount: 44,
+    usageCount: 0,
     path: "product/growth-hack.md",
   },
   {
@@ -730,6 +755,7 @@ export const skills: Skill[] = [
       { ko: "**측정 없는 최적화**: 감각으로 온보딩을 개선하는 것. 단계별 전환율, Activation Rate, TTV를 반드시 추적하고 A/B 테스트할 것", en: "**측정 없는 최적화**: 감각으로 온보딩을 개선하는 것. 단계별 전환율, Activation Rate, TTV를 반드시 추적하고 A/B 테스트할 것" },
     ],
     lineCount: 45,
+    usageCount: 0,
     path: "product/onboarding.md",
   },
   {
@@ -762,6 +788,7 @@ export const skills: Skill[] = [
       { ko: "**자동 생성만 의존**: TypeDoc 자동 생성만으로는 맥락과 사용 시나리오 부재. 자동 생성 + 수동 가이드 조합 필수", en: "**자동 생성만 의존**: TypeDoc 자동 생성만으로는 맥락과 사용 시나리오 부재. 자동 생성 + 수동 가이드 조합 필수" },
     ],
     lineCount: 269,
+    usageCount: 0,
     path: "meta/documentation.md",
   },
   {
@@ -794,6 +821,7 @@ export const skills: Skill[] = [
       { ko: "**피드백 의도 불명확**: \"이거 고쳐주세요\"만으로는 의도 불명. Conventional Comments 레이블로 명확히 표시", en: "**피드백 의도 불명확**: \"이거 고쳐주세요\"만으로는 의도 불명. Conventional Comments 레이블로 명확히 표시" },
     ],
     lineCount: 179,
+    usageCount: 0,
     path: "meta/code-review-skill.md",
   },
   {
@@ -825,6 +853,7 @@ export const skills: Skill[] = [
       { ko: "**온보딩 문서 미갱신**: 기술 스택 변경 후 옛 내용 그대로면 신규 입사자 혼란 가중. 매 분기 최신화", en: "**온보딩 문서 미갱신**: 기술 스택 변경 후 옛 내용 그대로면 신규 입사자 혼란 가중. 매 분기 최신화" },
     ],
     lineCount: 249,
+    usageCount: 0,
     path: "meta/knowledge-management.md",
   },
   {
@@ -856,6 +885,7 @@ export const skills: Skill[] = [
       { ko: "**수동 인프라 변경**: 콘솔 직접 수정은 IaC와 drift 발생. 모든 변경은 IaC를 통해 수행", en: "**수동 인프라 변경**: 콘솔 직접 수정은 IaC와 drift 발생. 모든 변경은 IaC를 통해 수행" },
     ],
     lineCount: 243,
+    usageCount: 0,
     path: "infra/cloud-architecture.md",
   },
   {
@@ -886,6 +916,7 @@ export const skills: Skill[] = [
       { ko: "**단일 replica**: `replicas: 1`은 Pod 재시작 시 다운타임. 프로덕션 최소 2개 유지", en: "**단일 replica**: `replicas: 1`은 Pod 재시작 시 다운타임. 프로덕션 최소 2개 유지" },
     ],
     lineCount: 236,
+    usageCount: 0,
     path: "infra/container-orchestration.md",
   },
   {
@@ -916,6 +947,7 @@ export const skills: Skill[] = [
       { ko: "**runbook 없는 알림**: 대응 절차 부재 시 MTTR 증가. 모든 알림에 runbook URL 첨부", en: "**runbook 없는 알림**: 대응 절차 부재 시 MTTR 증가. 모든 알림에 runbook URL 첨부" },
     ],
     lineCount: 179,
+    usageCount: 0,
     path: "infra/monitoring-observability.md",
   },
   {
@@ -946,6 +978,7 @@ export const skills: Skill[] = [
       { ko: "**CDN purge 의존**: 배포마다 캐시 무효화는 비효율적. content hashing으로 자연 갱신", en: "**CDN purge 의존**: 배포마다 캐시 무효화는 비효율적. content hashing으로 자연 갱신" },
     ],
     lineCount: 221,
+    usageCount: 0,
     path: "infra/networking-cdn.md",
   },
   {
@@ -978,6 +1011,7 @@ export const skills: Skill[] = [
       { ko: "**버전 미고정**: `>= 5.0` 같은 느슨한 제약은 호환성 문제 유발. `~> 5.0`으로 마이너만 허용", en: "**버전 미고정**: `>= 5.0` 같은 느슨한 제약은 호환성 문제 유발. `~> 5.0`으로 마이너만 허용" },
     ],
     lineCount: 179,
+    usageCount: 0,
     path: "infra/iac-terraform.md",
   },
   {
@@ -1009,6 +1043,7 @@ export const skills: Skill[] = [
       { ko: "**Circuit Breaker 없는 외부 호출**: 타임아웃과 재시도만으로는 연쇄 실패를 막을 수 없다", en: "**Circuit Breaker 없는 외부 호출**: 타임아웃과 재시도만으로는 연쇄 실패를 막을 수 없다" },
     ],
     lineCount: 210,
+    usageCount: 0,
     path: "architecture/microservices.md",
   },
   {
@@ -1039,6 +1074,7 @@ export const skills: Skill[] = [
       { ko: "**Dead Letter Queue 무시**: 실패 메시지 무한 재시도 대신 DLQ 격리 후 모니터링", en: "**Dead Letter Queue 무시**: 실패 메시지 무한 재시도 대신 DLQ 격리 후 모니터링" },
     ],
     lineCount: 212,
+    usageCount: 0,
     path: "architecture/event-driven.md",
   },
   {
@@ -1071,6 +1107,7 @@ export const skills: Skill[] = [
       { ko: "**거대한 God Use Case**: 여러 기능을 하나에 몰아넣으면 단일 책임 원칙 위반", en: "**거대한 God Use Case**: 여러 기능을 하나에 몰아넣으면 단일 책임 원칙 위반" },
     ],
     lineCount: 46,
+    usageCount: 0,
     path: "architecture/clean-architecture.md",
   },
   {
@@ -1102,6 +1139,7 @@ export const skills: Skill[] = [
       { ko: "**기술 용어를 도메인 용어로 사용**: `UserManager` 대신 비즈니스 언어 `OrderPlacement` 사용", en: "**기술 용어를 도메인 용어로 사용**: `UserManager` 대신 비즈니스 언어 `OrderPlacement` 사용" },
     ],
     lineCount: 178,
+    usageCount: 0,
     path: "architecture/ddd.md",
   },
   {
@@ -1134,6 +1172,7 @@ export const skills: Skill[] = [
       { ko: "**모니터링 없는 운영**: 메트릭/알람 없이 운영하면 장애를 사용자 신고로 인지", en: "**모니터링 없는 운영**: 메트릭/알람 없이 운영하면 장애를 사용자 신고로 인지" },
     ],
     lineCount: 223,
+    usageCount: 0,
     path: "architecture/system-design.md",
   },
   {
@@ -1165,6 +1204,7 @@ export const skills: Skill[] = [
       { ko: "**스키마 변경 무방비**: 소스 스키마 변경 시 파이프라인 장애 방치. 스키마 레지스트리와 데이터 계약으로 사전 감지", en: "**스키마 변경 무방비**: 소스 스키마 변경 시 파이프라인 장애 방치. 스키마 레지스트리와 데이터 계약으로 사전 감지" },
     ],
     lineCount: 170,
+    usageCount: 0,
     path: "data/data-pipeline.md",
   },
   {
@@ -1196,6 +1236,7 @@ export const skills: Skill[] = [
       { ko: "**축 잘림(Truncated Axis)**: 막대 차트에서 Y축 0 미시작은 차이 과장. 명시적 표기 필수", en: "**축 잘림(Truncated Axis)**: 막대 차트에서 Y축 0 미시작은 차이 과장. 명시적 표기 필수" },
     ],
     lineCount: 57,
+    usageCount: 0,
     path: "data/data-visualization.md",
   },
   {
@@ -1227,6 +1268,7 @@ export const skills: Skill[] = [
       { ko: "**불필요한 DISTINCT**: JOIN 오류로 중복 발생 시 DISTINCT로 숨기지 말고 JOIN 조건 수정", en: "**불필요한 DISTINCT**: JOIN 오류로 중복 발생 시 DISTINCT로 숨기지 말고 JOIN 조건 수정" },
     ],
     lineCount: 177,
+    usageCount: 0,
     path: "data/sql-optimization.md",
   },
   {
@@ -1258,6 +1300,7 @@ export const skills: Skill[] = [
       { ko: "**SCD Type 2 무조건 적용**: 변경 이력 불필요한 Dimension에 Type 2는 복잡성만 증가", en: "**SCD Type 2 무조건 적용**: 변경 이력 불필요한 Dimension에 Type 2는 복잡성만 증가" },
     ],
     lineCount: 174,
+    usageCount: 0,
     path: "data/data-modeling.md",
   },
   {
@@ -1290,6 +1333,7 @@ export const skills: Skill[] = [
       { ko: "**하드코딩 환경 설정**: `WHERE env = 'prod'` 대신 `{{ target.name }}`으로 동적 처리", en: "**하드코딩 환경 설정**: `WHERE env = 'prod'` 대신 `{{ target.name }}`으로 동적 처리" },
     ],
     lineCount: 237,
+    usageCount: 0,
     path: "data/analytics-engineering.md",
   },
   {
@@ -1320,6 +1364,7 @@ export const skills: Skill[] = [
       { ko: "**플랫폼 차이 무시**: iOS/Android의 뒤로가기, 제스처, 상태바 동작 차이를 고려하지 않은 설계", en: "**플랫폼 차이 무시**: iOS/Android의 뒤로가기, 제스처, 상태바 동작 차이를 고려하지 않은 설계" },
     ],
     lineCount: 220,
+    usageCount: 0,
     path: "mobile/react-native.md",
   },
   {
@@ -1352,6 +1397,7 @@ export const skills: Skill[] = [
       { ko: "**이미지 원본 크기 전송**: 3000x4000 사진을 150x150으로 표시하면서 원본 다운로드. 서버 사이드 리사이징 필수", en: "**이미지 원본 크기 전송**: 3000x4000 사진을 150x150으로 표시하면서 원본 다운로드. 서버 사이드 리사이징 필수" },
     ],
     lineCount: 208,
+    usageCount: 0,
     path: "mobile/app-performance.md",
   },
   {
@@ -1383,6 +1429,7 @@ export const skills: Skill[] = [
       { ko: "**성과 미측정**: 발송 수만 추적하고 열람률/전환율 미측정 시 전략 개선 불가", en: "**성과 미측정**: 발송 수만 추적하고 열람률/전환율 미측정 시 전략 개선 불가" },
     ],
     lineCount: 175,
+    usageCount: 0,
     path: "mobile/push-notification.md",
   },
   {
@@ -1414,6 +1461,7 @@ export const skills: Skill[] = [
       { ko: "**메타데이터 방치**: 새 기능 추가 후 스크린샷/설명 미갱신은 전환 기회 상실", en: "**메타데이터 방치**: 새 기능 추가 후 스크린샷/설명 미갱신은 전환 기회 상실" },
     ],
     lineCount: 46,
+    usageCount: 0,
     path: "mobile/app-store-optimization.md",
   },
   {
@@ -1445,6 +1493,7 @@ export const skills: Skill[] = [
       { ko: "**Breaking Change 무시**: Token 삭제 시 Major 버전을 올리지 않으면 소비자 빌드가 깨진다", en: "**Breaking Change 무시**: Token 삭제 시 Major 버전을 올리지 않으면 소비자 빌드가 깨진다" },
     ],
     lineCount: 250,
+    usageCount: 0,
     path: "design/design-system.md",
   },
   {
@@ -1476,6 +1525,7 @@ export const skills: Skill[] = [
       { ko: "**자동 재생 미디어**: 사전 동의 없는 오디오/비디오 자동 재생은 스크린 리더와 충돌한다", en: "**자동 재생 미디어**: 사전 동의 없는 오디오/비디오 자동 재생은 스크린 리더와 충돌한다" },
     ],
     lineCount: 180,
+    usageCount: 0,
     path: "design/accessibility.md",
   },
   {
@@ -1508,6 +1558,7 @@ export const skills: Skill[] = [
       { ko: "**뒤로 가기 파괴**: SPA에서 히스토리를 가로채면 사용자 혼란. 의미 있는 단계를 히스토리에 기록", en: "**뒤로 가기 파괴**: SPA에서 히스토리를 가로채면 사용자 혼란. 의미 있는 단계를 히스토리에 기록" },
     ],
     lineCount: 259,
+    usageCount: 0,
     path: "design/user-flow.md",
   },
   {
@@ -1539,6 +1590,7 @@ export const skills: Skill[] = [
       { ko: "**무한 로딩**: 타임아웃 없이 로딩만 표시. 일정 시간 후 에러로 전환 + 재시도 제공", en: "**무한 로딩**: 타임아웃 없이 로딩만 표시. 일정 시간 후 에러로 전환 + 재시도 제공" },
     ],
     lineCount: 178,
+    usageCount: 0,
     path: "design/interaction-design.md",
   },
   {
@@ -1570,6 +1622,7 @@ export const skills: Skill[] = [
       { ko: "**가이드라인 방치**: 업데이트 안 된 가이드라인은 팀이 참조하지 않는다. 변경 시 문서 먼저 갱신", en: "**가이드라인 방치**: 업데이트 안 된 가이드라인은 팀이 참조하지 않는다. 변경 시 문서 먼저 갱신" },
     ],
     lineCount: 44,
+    usageCount: 0,
     path: "design/brand-identity.md",
   },
   {
@@ -1602,6 +1655,7 @@ export const skills: Skill[] = [
       { ko: "구독 상태 직접 업데이트: DB를 직접 수정 — Stripe를 Single Source of Truth로 사용", en: "Direct subscription state update: Modifying DB directly — use Stripe as Single Source of Truth" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "business/payment-billing.md",
   },
   {
@@ -1627,6 +1681,7 @@ export const skills: Skill[] = [
     antiPatterns: [
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "ai/ai-evaluation.md",
   },
   {
@@ -1658,6 +1713,7 @@ export const skills: Skill[] = [
       { ko: "테넌트 삭제 시 데이터 잔류: DB·캐시·파일·큐에 데이터가 남는 상태", en: "Data retention on tenant deletion: Data remaining in DB, cache, files, and queues" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "architecture/multi-tenant.md",
   },
   {
@@ -1689,6 +1745,7 @@ export const skills: Skill[] = [
       { ko: "전체 상태 브로드캐스트: 변경 시 전체 데이터 전송 — diff/delta만 전송", en: "Full state broadcast: Sending all data on changes — send only diff/delta" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "architecture/realtime-systems.md",
   },
   {
@@ -1721,6 +1778,7 @@ export const skills: Skill[] = [
       { ko: "세션 무효화 미구현: 로그아웃 시 클라이언트만 삭제 — 서버에서 무효화 필수", en: "No session invalidation: Only deleting client-side on logout — must invalidate on server" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "dev/auth-architecture.md",
   },
   {
@@ -1747,6 +1805,7 @@ export const skills: Skill[] = [
     antiPatterns: [
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "dev/migration-strategy.md",
   },
   {
@@ -1779,6 +1838,7 @@ export const skills: Skill[] = [
       { ko: "동기 처리 위장: API 핸들러에서 await longTask()로 동기 처리 — 큐에 넣고 즉시 응답", en: "Disguised sync processing: await longTask() in API handler — enqueue and respond immediately" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "dev/background-jobs.md",
   },
   {
@@ -1811,6 +1871,7 @@ export const skills: Skill[] = [
       { ko: "검색 결과 0건 방치: '결과 없음'만 표시 — 오타 교정, 유사 검색어 제안", en: "Ignoring zero results: Only showing 'no results' — suggest typo corrections and similar queries" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "data/search-engineering.md",
   },
   {
@@ -1843,6 +1904,7 @@ export const skills: Skill[] = [
       { ko: "트랜잭션/마케팅 혼합: 동일 IP로 모든 이메일 발송 — 마케팅 스팸 신고가 비밀번호 재설정 전송률까지 하락시킴", en: "Mixing transactional/marketing: Sending all emails from same IP — marketing complaints degrade password reset deliverability" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "dev/email-delivery.md",
   },
   {
@@ -1875,6 +1937,7 @@ export const skills: Skill[] = [
       { ko: "S3 URL 직접 노출: presigned GET URL을 프론트엔드에 영구 저장 — 만료 후 깨짐, 보안 위험", en: "Exposing direct S3 URLs: Storing presigned GET URLs permanently in frontend — breaks after expiry, security risk" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "dev/file-upload.md",
   },
   {
@@ -1907,6 +1970,7 @@ export const skills: Skill[] = [
       { ko: "캐시 워밍 미구현: 배포 직후 첫 요청들이 모두 캐시 미스 — 배포 시 주요 경로 프리워밍 필요", en: "No cache warming: All initial requests after deploy are cache misses — pre-warm critical paths on deploy" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "dev/caching-strategy.md",
   },
   {
@@ -1939,6 +2003,7 @@ export const skills: Skill[] = [
       { ko: "단일 번역 파일: 모든 번역을 하나의 ko.json에 넣음 — 번들 크기 증가, 네임스페이스로 분할", en: "Single translation file: Putting all translations in one ko.json — increased bundle size, split by namespace" },
     ],
     lineCount: 0,
+    usageCount: 0,
     path: "dev/i18n-localization.md",
   },
   {
@@ -1965,6 +2030,7 @@ export const skills: Skill[] = [
     antiPatterns: [
     ],
     lineCount: 68,
+    usageCount: 0,
     path: "legal/privacy-compliance.md",
   },
   {
@@ -1991,6 +2057,7 @@ export const skills: Skill[] = [
     antiPatterns: [
     ],
     lineCount: 91,
+    usageCount: 0,
     path: "legal/oss-license.md",
   },
   {
@@ -2022,6 +2089,7 @@ export const skills: Skill[] = [
       { ko: "EU 이전 근거 없는 국제 데이터 이전: SCCs/DPF 없이 이전 — GDPR Art. 46 위반", en: "Cross-border transfer without basis: Transfer without SCCs/DPF — violates GDPR Art. 46" },
     ],
     lineCount: 170,
+    usageCount: 0,
     path: "legal/terms-of-service.md",
   },
   {
@@ -2048,6 +2116,7 @@ export const skills: Skill[] = [
     antiPatterns: [
     ],
     lineCount: 73,
+    usageCount: 0,
     path: "legal/contract-review.md",
   },
 ];
